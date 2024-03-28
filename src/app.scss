@@ -1,0 +1,454 @@
+@font-face{
+  font-family: "Inter";
+  src: url("./assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf") format('truetype-variations');
+  font-weight: 400 600;
+}
+@font-face{
+  font-family: 'InterItalic';
+  src: url("./assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf") format('truetype-variations');
+  font-weight: 400 600;
+}
+@font-face{
+  font-family: 'Lora';
+  src: url("./assets/fonts/lora/Lora-VariableFont_wght.ttf") format('truetype-variations');
+  font-weight: 400 600;
+}
+@font-face{
+  font-family: 'Inconsolata';
+  src: url("./assets/fonts/inconsolata/Inconsolata-VariableFont_wdth\,wght.ttf") format('truetype-variations');
+  font-weight: 400 600;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+:root{
+  --dark-1: hsl(0,0%,2%);
+  --dark-2: hsl(0,0%,12%);
+  --dark-3: hsl(0,0%,18%);
+  --dark-4: hsl(0,0%,23%);
+  --grey-1: hsl(0,0%,46%);
+  --grey-2: hsl(0,0%,91%);
+  --grey-3: hsl(0,0%,96%);
+  --white: hsl(0,0%,100%);
+  --purple: hsl(274,82%,60%);
+  --red: hsl(0,100%,66%);
+}
+
+body,html{
+  font-size: 16px;
+}
+body{
+  width: 100%;
+  background-color: var(--white);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 58px;
+}
+.wrapper{
+  max-width: 736px;
+  margin: 0 auto;
+  user-select: none;
+  &.sans-serif{
+    font-family: Inter;
+  }
+  &.serif{
+    font-family: Lora;
+  }
+  &.mono{
+    font-family: Inconsolata;
+  }
+}
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header {
+  .logoImg{
+    width: 32px;
+    height: 36.5px;
+  }
+  .navActions{
+    display: flex;
+    align-items: center;
+  }
+  .fontDropdown{
+    position: relative;
+    .action{
+      display: flex;
+      gap: 18px;
+      cursor: pointer;
+    }
+    .label{
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 600;
+      color: var(--dark-3);
+    }
+    img{
+      width: 12px;
+      height: 6px;
+    }
+  }
+}
+
+.fontMenu{
+  width: 183px;
+  height: 152px;
+  background: var(--white);
+  border-radius: 12px;
+  position: absolute;
+  top: 38px;
+  box-shadow: 0px 5px 30px rgba(0,0,0,0.1);
+  right: 0px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1;
+  .fontLabel{
+    font-size: 18px;
+    font-weight: 600;
+    transition: .15s color;
+    cursor: pointer;
+  }
+  .sans-serif{
+    font-family: Inter;
+  }
+  .serif{
+    font-family: Lora;
+  }
+  .mono{
+    font-family: Inconsolata;
+  }
+  .fontLabel:hover{
+    color: var(--purple);
+  }
+}
+
+.divider{
+  height: 32px;
+  width: 1px;
+  background-color: var(--grey-2);
+  margin: 0 26px;
+}
+
+
+.switchWrapper{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  .inputSwitch{
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: var(--grey-1);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &.active .dotSwitch{
+      animation: switchAnimation 200ms forwards ease-in-out;
+    }
+    &.inactive .dotSwitch{
+      animation: switchAnimationOff 200ms forwards;
+    }
+    .dotSwitch{
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--white);
+    }
+  }
+}
+main{
+  margin-top: 51px;
+  .inputWrapper{
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    input{
+      width: 100%;
+      border-radius: 16px;
+      outline: 0;
+      background: var(--grey-3);
+      border: none;
+      padding: 20px 24px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 0;
+      margin-bottom: 8px;
+      &::placeholder{
+        color: var(--dark-3);
+        opacity: 25%;
+      }
+      &:focus{
+        box-shadow: 0 0 0 1px var(--purple);
+      }
+    }
+    &.error input{
+      box-shadow: 0 0 0 1px var(--red);
+    }
+    .errorMessage{
+      font-size: 20px;
+      line-height: 0;
+      color: var(--red);
+    }
+    .searchIcon{
+      position: absolute;
+      right: 24px;
+      top: calc(50% - 1px);
+      transform: translateY(-50%);
+      width: 15px;
+    }
+    .resultWrapper{
+      margin-top: 45px;
+    }
+  }
+  .wordDetails{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    .word{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .label{
+        font-size: 64px;
+        font-weight: 600;
+      }
+      .phonetic{
+        font-size: 24px;
+        color: var(--purple);
+      }
+    }
+    .player img{
+      max-width: 75px;
+    }
+  }
+  .partOfSpeech{
+    position: relative;
+    width: 100%;
+    margin: 40px 0;
+    span{
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 600;
+    }
+    &::before{
+      content:"";
+      position: absolute;
+      top:50%;
+      left:80px;
+      width: 100%;
+      height: 1px;
+      background-color: var(--grey-2);
+      z-index: -1;
+    }
+  }
+  .resultsData{
+    span{
+      font-size: 20px;
+      color: var(--grey-1);
+    }
+    .meanings{
+      margin: 25px 0 0 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-bottom: 40px;
+      .meaning{
+        padding-left: 20px;
+        position: relative;
+        font-size: 18px;
+        line-height: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        p{
+          font-size: 18px;
+          line-height: 24px;
+          color: var(--grey-1);
+        }
+        &:before{
+          position: absolute;
+          content: "";
+          width: 5px;
+          height: 5px;
+          background-color: var(--purple);
+          border-radius: 50%;
+          left:0;
+          top: 10px;
+        }
+      }
+    }
+  }
+}
+.synonyms{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  .label{
+    font-size: 20px;
+  }
+  .synonym{
+    font-size: 20px;
+    color: var(--purple);
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+.source{
+  padding: 20px 0;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  span{
+    position: relative;
+    color: var(--grey-1);
+    &::before{
+      position: absolute;
+      content: "";
+      left:0;
+      width: 100%;
+      height: 1px;
+      bottom: 0px;
+      background-color: var(--grey-1);
+    }
+  }
+  p{
+    display: flex;
+    gap: 9px;
+    cursor: pointer;
+    img{
+      max-width: 12px;;
+    }
+    a{
+      position: relative;
+      color: var(--dark-3);
+      &::before{
+        position: absolute;
+        content: "";
+        left:0;
+        width: 100%;
+        height: 1px;
+        bottom: 0px;
+        background-color: var(--grey-1);
+      }
+    }
+  }
+}
+
+.emptyState{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 102px;
+  .emoji{
+    font-size: 64px;
+    margin-bottom: 44px;
+  }
+  .title{
+    color: var(--dark-3);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  p{
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--grey-1);
+  }
+}
+
+body{
+  &.dark{
+  background-color: var(--dark-1);
+    .fontDropdown{
+      .label{
+        color: var(--white);
+      }
+    }
+    .fontMenu{
+      background: var(--dark-2);
+      box-shadow: 0px 5px 30px var(--purple);
+      .fontLabel{
+        color: var(--white)
+      }
+      .fontLabel:hover{
+        color: var(--purple);
+      }
+    }
+    .inputSwitch{
+      background-color: var(--purple);
+     
+    }
+    .moonTheme {
+      path{
+          stroke: var(--purple);
+      }
+    }
+    .inputWrapper{
+      input{
+        background-color: var(--dark-2);
+        color: var(--white);
+        &::placeholder{
+          color: var(--white);
+        }
+      }
+    }
+    .wordDetails{
+      .word{
+        .label{
+         color: var(--white)
+        }
+      }
+    }
+    .partOfSpeech{
+      span{
+        color: var(--white);
+      }
+    }
+    .meanings{
+      .meaning{
+        color: var(--white);
+      }
+    }
+    .source{
+      p{
+        a{
+          color: var(--white);
+        }
+      }
+    }
+    .emptyState{
+      .title{
+        color: var(--white);
+      }
+    }
+    
+  }
+} 
+@keyframes switchAnimation {
+  to{
+    transform: translateX(20px);
+  }
+}
+@keyframes switchAnimationOff {
+  from{
+    transform: translateX(20px);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
